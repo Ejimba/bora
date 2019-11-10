@@ -15,5 +15,7 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'go_back_home' => 'Go Back Home',
+    'go_back_login' => 'Go Back to Login',
 
 ];
