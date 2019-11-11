@@ -45,6 +45,32 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
+                        <h4>Appointments</h4>
+                        <hr>
+                        @if (count($patient->appointments))
+                        <table class="table table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                    <td>Appointment Date</td>
+                                    <td>Type</td>
+                                    <td>Next Appointment Date</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($patient->appointments as $appointment)
+                                    <tr>
+                                        <td>{{ $appointment->appointment_date }}</td>
+                                        <td>{{ $appointment->type }}</td>
+                                        <td>{{ $appointment->next_appointment_date }}</td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @else
+                            <p>No appointments found</p>
+                        @endif
                     </div>
                 </div>
             </div>

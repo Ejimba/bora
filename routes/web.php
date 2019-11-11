@@ -10,3 +10,5 @@ Route::get('/patients/create', 'PatientController@create')->name('patients.creat
 Route::get('/patients/{id}', 'PatientController@show')->name('patients.show');
 Route::post('/patients', 'PatientController@store')->name('patients.store');
 Route::put('/patients/{id}', 'PatientController@update')->name('patients.update');
+
+Route::get('/appointments', 'AppointmentController@index')->name('appointments.index');
