@@ -23,7 +23,7 @@ class PatientController extends Controller
     {
         $patient = Patient::with('user')->find($id);
         if (!$patient) {
-            return redirect(route('patients.index'));
+            return redirect(route('patients.index'))->with('error', 'Patient not found!');
         }
         return view('patients.show', compact('patient'));
     }
@@ -41,14 +41,14 @@ class PatientController extends Controller
         ]);
         $user = User::create($request->only((new User)->getFillable()));
         $patient = Patient::create(array_merge($request->only((new Patient)->getFillable()), ['user_id' => $user->id]));
-        return redirect(route('patients.show', $patient->id));
+        return redirect(route('patients.show', $patient->id))->with('success', 'Patient created successfully!');
     }
 
     public function update($id, Request $request)
     {
         $patient = Patient::with('user')->find($id);
         if (!$patient) {
-            return redirect(route('patients.index'));
+            return redirect(route('patients.index'))->with('error', 'Patient not found!');
         }
         $request->validate([
             'name' => 'required',

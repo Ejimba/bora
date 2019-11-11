@@ -20,7 +20,18 @@ class PatientsDataTable extends DataTable
 
     public function query(Patient $model)
     {
-        return $model->with('user')->select(['users.*', 'patients.*']);
+        return $model->leftJoin('users', 'patients.user_id', '=', 'users.id')->select([
+            'patients.id',
+            'patients.user_id',
+            'users.name',
+            'users.email',
+            'users.password',
+            'users.phone',
+            'users.gender',
+            'users.dob',
+            'patients.created_at',
+            'patients.updated_at',
+        ]);
     }
 
     public function html()
@@ -30,7 +41,7 @@ class PatientsDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->buttons(['csv']);
     }
 
@@ -38,9 +49,9 @@ class PatientsDataTable extends DataTable
     {
         return [
             ['data' => 'id', 'title' => 'Patient ID'],
-            ['data' => 'user.name', 'title' => 'Name'],
-            ['data' => 'user.gender', 'title' => 'Gender'],
-            ['data' => 'user.dob', 'title' => 'Birth Date'],
+            ['data' => 'name', 'title' => 'Name'],
+            ['data' => 'gender', 'title' => 'Gender'],
+            ['data' => 'dob', 'title' => 'Birth Date'],
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
