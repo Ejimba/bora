@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.6 (2019-11-11)
+
+### Added
+- Add `appointments` module
+
+
 ## 0.0.5 (2019-11-11)
 
 ### Changed
