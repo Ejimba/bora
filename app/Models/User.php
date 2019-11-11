@@ -11,11 +11,16 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    public static $createRules = [
+        'name' => 'required',
+        'gender' => 'required',
+    ];
+    
+    public static $updateRules = [
+        'name' => 'required',
+        'gender' => 'required',
+    ];
+
     protected $fillable = [
         'name',
         'username',
@@ -28,20 +33,10 @@ class User extends Authenticatable
         'dod'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'dob' => 'datetime',

@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\DataTables\PatientsDataTable;
+use App\Http\Requests\PatientStoreRequest;
+use App\Http\Requests\PatientUpdateRequest;
 
 class PatientController extends Controller
 {
@@ -33,27 +35,19 @@ class PatientController extends Controller
         return view('patients.create');
     }
 
-    public function store(Request $request)
+    public function store(PatientStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'gender' => 'required'
-        ]);
         $user = User::create($request->only((new User)->getFillable()));
         $patient = Patient::create(array_merge($request->only((new Patient)->getFillable()), ['user_id' => $user->id]));
         return redirect(route('patients.show', $patient->id))->with('success', 'Patient created successfully!');
     }
 
-    public function update($id, Request $request)
+    public function update($id, PatientUpdateRequest $request)
     {
         $patient = Patient::with('user')->find($id);
         if (!$patient) {
             return redirect(route('patients.index'))->with('error', 'Patient not found!');
         }
-        $request->validate([
-            'name' => 'required',
-            'gender' => 'required'
-        ]);
         $user = $patient->user;
         $user->update($request->only((new User)->getFillable()));
         $patient->update(array_merge($request->only((new Patient)->getFillable()), ['user_id' => $user->id]));

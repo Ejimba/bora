@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Patient extends Model
 {
     use SoftDeletes;
+
+    public static $createRules = [];
+    
+    public static $updateRules = [];
     
     protected $fillable = ['user_id'];
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.5 (2019-11-11)
+
+### Changed
+- Moved `patients` validation to Form Requests
+
 ## 0.0.4 (2019-11-11)
 
 ### Added
