@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', 'Patients')
+@section('title', 'Patient Appointments')
 
 @section('content')
 
@@ -9,9 +9,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Patients
+                        Patient Appointments
                         <div class="float-right">
-                            <a href="{{ route('patients.create') }}" class="btn btn-sm btn-primary">Add New Patient</a>
                             <a href="#" class="btn btn-sm btn-success" id="export-button">Export</a>
                         </div>
                     </div>

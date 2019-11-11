@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use stdClass;
+use App\Models\Patient;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -23,6 +26,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $statistics = new stdClass();
+        $statistics->patient_count = Patient::count();
+        $statistics->appointment_count = Appointment::count();
+        return view('dashboard.index', compact('statistics'));
     }
 }

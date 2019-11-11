@@ -21,7 +21,7 @@ class PatientController extends Controller
 
     public function show($id, Request $request)
     {
-        $patient = Patient::with('user')->find($id);
+        $patient = Patient::with(['user', 'appointments'])->find($id);
         if (!$patient) {
             return redirect(route('patients.index'));
         }
