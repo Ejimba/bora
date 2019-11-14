@@ -9,9 +9,9 @@
         </div>
         @csrf
         <div class="form-label-group">
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('E-Mail Address') }}">
-            <label for="email">{{ __('E-Mail Address') }}</label>
-            @error('email')
+            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="{{ __('Username') }}">
+            <label for="username">{{ __('Username') }}</label>
+            @error('username')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
