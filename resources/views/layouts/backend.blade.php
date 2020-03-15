@@ -2,6 +2,11 @@
 
 @section('styles')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .dt-buttons {
+            display: none;
+        }
+    </style>
 @show
 
 @section('body')
@@ -9,11 +14,13 @@
         <div id="app">
             @include('partials.nav')
             <main class="py-4">
+                @include('sweetalert::alert')
                 @yield('content')
             </main>
         </div>
-        @section('scripts')
-            <script src="{{ asset('js/app.js') }}" defer></script>
-        @show
+
+        <script src="{{ mix('js/app.js') }}"></script>
+        <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+        @stack('scripts')
     </body>
 @endsection

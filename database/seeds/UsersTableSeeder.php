@@ -15,9 +15,10 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->truncate();
         User::create([
             'name' => 'Super User',
+            'username' => 'superuser',
             'email' => 'superuser@example.com',
-            'password' => bcrypt('password'),
             'email_verified_at' => now(),
+            'password' => bcrypt('password'),
         ]);
     }
 }
